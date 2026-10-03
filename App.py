@@ -12,11 +12,11 @@ from scoring import score_localities, DEFAULT_AMENITY_WEIGHTS, DEFAULT_CATEGORY_
 # ------------------------------------------------------------------
  
 def clean_rent_data(value):
-    if pd.isna(value) or value=="":
+    if pd.isna(value) or value == "":
         return None
-    if isinstance(value,(int, float)):
+    if isinstance(value, (int, float)):
         return float(value)
-    cleaned= re.sub(r"[^\d.]", str[value])
+    cleaned = re.sub(r"[^\d.]", "", str(value))
     return float(cleaned) if cleaned else None
 
 @st.cache_data
