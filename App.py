@@ -174,286 +174,244 @@ st.set_page_config(
     page_title="Bangalore Locality Recommender",
     page_icon="🏠",
     layout="wide",
-    initial_sidebar_state="expanded",
 )
 
 
 # ------------------------------------------------------------------
-# CUSTOM CSS — VISUAL ONLY
+# CUSTOM CSS
 # ------------------------------------------------------------------
 
-st.markdown(
-    """
-    <style>
+st.markdown("""
+<style>
 
-    /* ==============================
-       GLOBAL
-       ============================== */
+/* ==============================
+   GENERAL PAGE
+   ============================== */
 
-    .stApp {
-        background-color: #f7f8fa;
-    }
+.stApp {
+    background-color: #f7f8fa;
+}
 
-    .main .block-container {
-        padding-top: 2rem;
-        padding-bottom: 3rem;
-        max-width: 1400px;
-    }
-
-    /* Remove excessive top spacing */
-    header[data-testid="stHeader"] {
-        background-color: transparent;
-    }
+.main .block-container {
+    max-width: 1400px;
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+}
 
 
-    /* ==============================
-       HERO SECTION
-       ============================== */
+/* ==============================
+   HERO
+   ============================== */
+
+.hero {
+    background: linear-gradient(135deg, #111827, #273449);
+    padding: 38px 42px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.hero-title {
+    color: white;
+    font-size: 2.4rem;
+    font-weight: 750;
+    letter-spacing: -0.8px;
+    margin: 0;
+}
+
+.hero-subtitle {
+    color: #d1d5db;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-top: 12px;
+    max-width: 850px;
+}
+
+.hero-tag {
+    display: inline-block;
+    margin-top: 18px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.10);
+    color: #e5e7eb;
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.6px;
+}
+
+
+/* ==============================
+   SIDEBAR
+   ============================== */
+
+section[data-testid="stSidebar"] {
+    background-color: #ffffff;
+    border-right: 1px solid #e5e7eb;
+}
+
+section[data-testid="stSidebar"] .stButton button {
+    border-radius: 10px;
+    font-weight: 650;
+    min-height: 42px;
+}
+
+
+/* ==============================
+   SECTION HEADINGS
+   ============================== */
+
+.section-title {
+    font-size: 1.4rem;
+    font-weight: 720;
+    color: #111827;
+    margin-top: 25px;
+    margin-bottom: 5px;
+}
+
+.section-subtitle {
+    color: #6b7280;
+    font-size: 0.9rem;
+    margin-bottom: 18px;
+}
+
+
+/* ==============================
+   KPI CARDS
+   ============================== */
+
+.kpi-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px 20px;
+    min-height: 110px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.035);
+}
+
+.kpi-label {
+    color: #6b7280;
+    font-size: 0.72rem;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.kpi-value {
+    color: #111827;
+    font-size: 1.55rem;
+    font-weight: 750;
+    margin-top: 6px;
+}
+
+.kpi-description {
+    color: #9ca3af;
+    font-size: 0.75rem;
+    margin-top: 2px;
+}
+
+
+/* ==============================
+   RESULT TABLE
+   ============================== */
+
+div[data-testid="stDataFrame"] {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.035);
+}
+
+
+/* ==============================
+   INFORMATION CARD
+   ============================== */
+
+.info-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px 22px;
+    color: #4b5563;
+    line-height: 1.65;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.025);
+}
+
+.info-card strong {
+    color: #111827;
+}
+
+
+/* ==============================
+   METHOD CARDS
+   ============================== */
+
+.method-card {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 20px;
+    min-height: 145px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.025);
+}
+
+.method-number {
+    color: #9ca3af;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.7px;
+}
+
+.method-title {
+    color: #111827;
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 8px;
+}
+
+.method-text {
+    color: #6b7280;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    margin-top: 7px;
+}
+
+
+/* ==============================
+   FOOTER
+   ============================== */
+
+.footer {
+    margin-top: 45px;
+    padding-top: 18px;
+    border-top: 1px solid #e5e7eb;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.72rem;
+}
+
+
+/* ==============================
+   MOBILE
+   ============================== */
+
+@media (max-width: 768px) {
 
     .hero {
-        background: linear-gradient(
-            135deg,
-            #111827 0%,
-            #1f2937 55%,
-            #374151 100%
-        );
-
-        padding: 2.2rem 2.5rem;
-        border-radius: 18px;
-        margin-bottom: 1.8rem;
-
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+        padding: 28px 24px;
     }
 
     .hero-title {
-        color: white;
-        font-size: 2.35rem;
-        font-weight: 750;
-        margin: 0;
-        letter-spacing: -0.8px;
+        font-size: 1.9rem;
     }
 
     .hero-subtitle {
-        color: #d1d5db;
-        font-size: 1rem;
-        margin-top: 0.65rem;
-        max-width: 850px;
-        line-height: 1.6;
-    }
-
-    .hero-tag {
-        display: inline-block;
-        margin-top: 1.1rem;
-        padding: 0.35rem 0.8rem;
-        border-radius: 20px;
-        background-color: rgba(255,255,255,0.1);
-        color: #e5e7eb;
-        font-size: 0.78rem;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-    }
-
-
-    /* ==============================
-       SIDEBAR
-       ============================== */
-
-    section[data-testid="stSidebar"] {
-        background-color: #ffffff;
-        border-right: 1px solid #e5e7eb;
-    }
-
-    section[data-testid="stSidebar"] h2,
-    section[data-testid="stSidebar"] h3 {
-        color: #111827;
-    }
-
-    section[data-testid="stSidebar"] .stMarkdown {
-        color: #4b5563;
-    }
-
-    section[data-testid="stSidebar"] .stButton > button {
-        border-radius: 10px;
-        font-weight: 650;
-        padding: 0.65rem 1rem;
-    }
-
-
-    /* ==============================
-       SECTION HEADERS
-       ============================== */
-
-    .section-title {
-        font-size: 1.35rem;
-        font-weight: 700;
-        color: #111827;
-        margin-top: 1.4rem;
-        margin-bottom: 0.8rem;
-    }
-
-    .section-subtitle {
-        color: #6b7280;
         font-size: 0.9rem;
-        margin-top: -0.4rem;
-        margin-bottom: 1rem;
     }
 
+}
 
-    /* ==============================
-       KPI CARDS
-       ============================== */
-
-    .kpi-card {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 14px;
-        padding: 1.15rem 1.3rem;
-        min-height: 110px;
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.035);
-    }
-
-    .kpi-label {
-        color: #6b7280;
-        font-size: 0.78rem;
-        font-weight: 650;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .kpi-value {
-        color: #111827;
-        font-size: 1.65rem;
-        font-weight: 750;
-        margin-top: 0.35rem;
-    }
-
-    .kpi-description {
-        color: #9ca3af;
-        font-size: 0.75rem;
-        margin-top: 0.15rem;
-    }
-
-
-    /* ==============================
-       RESULT TABLE
-       ============================== */
-
-    div[data-testid="stDataFrame"] {
-        border-radius: 12px;
-        overflow: hidden;
-        border: 1px solid #e5e7eb;
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.035);
-    }
-
-
-    /* ==============================
-       INFO / EXPLANATION CARDS
-       ============================== */
-
-    .info-card {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 14px;
-        padding: 1.25rem 1.4rem;
-        margin-top: 0.5rem;
-        line-height: 1.65;
-        color: #4b5563;
-        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.025);
-    }
-
-    .info-card strong {
-        color: #111827;
-    }
-
-
-    /* ==============================
-       METHODOLOGY CARDS
-       ============================== */
-
-    .method-card {
-        background: white;
-        border: 1px solid #e5e7eb;
-        border-radius: 12px;
-        padding: 1rem 1.1rem;
-        min-height: 125px;
-    }
-
-    .method-number {
-        font-size: 0.75rem;
-        font-weight: 700;
-        color: #6b7280;
-        letter-spacing: 0.6px;
-    }
-
-    .method-title {
-        font-size: 1rem;
-        font-weight: 700;
-        color: #111827;
-        margin-top: 0.35rem;
-    }
-
-    .method-text {
-        font-size: 0.8rem;
-        color: #6b7280;
-        margin-top: 0.35rem;
-        line-height: 1.45;
-    }
-
-
-    /* ==============================
-       FOOTER
-       ============================== */
-
-    .footer {
-        margin-top: 3rem;
-        padding-top: 1.2rem;
-        border-top: 1px solid #e5e7eb;
-        text-align: center;
-        color: #9ca3af;
-        font-size: 0.75rem;
-    }
-
-
-    /* ==============================
-       BUTTON
-       ============================== */
-
-    .stButton > button {
-        border-radius: 10px;
-        font-weight: 650;
-        min-height: 42px;
-    }
-
-
-    /* ==============================
-       MOBILE
-       ============================== */
-
-    @media (max-width: 768px) {
-
-        .main .block-container {
-            padding-left: 1rem;
-            padding-right: 1rem;
-        }
-
-        .hero {
-            padding: 1.5rem;
-        }
-
-        .hero-title {
-            font-size: 1.8rem;
-        }
-
-        .hero-subtitle {
-            font-size: 0.9rem;
-        }
-
-    }
-
-    </style>
-    """,
-    unsafe_allow_html=True,
-)
+</style>
+""", unsafe_allow_html=True)
 
 
 # ------------------------------------------------------------------
@@ -461,6 +419,7 @@ st.markdown(
 # ------------------------------------------------------------------
 
 def clean_rent_data(value):
+
     if pd.isna(value) or value == "":
         return None
 
@@ -510,13 +469,11 @@ def compute_commute_df(office_address, localities_tuple):
             lng
         )
 
-        rows.append(
-            {
-                "locality": locality,
-                "commute_km": km,
-                "commute_min": mins
-            }
-        )
+        rows.append({
+            "locality": locality,
+            "commute_km": km,
+            "commute_min": mins
+        })
 
         time.sleep(0.3)
 
@@ -524,31 +481,20 @@ def compute_commute_df(office_address, localities_tuple):
 
 
 # ------------------------------------------------------------------
-# HERO
+# HERO SECTION
 # ------------------------------------------------------------------
 
-st.markdown(
-    """
-    <div class="hero">
-
-        <div class="hero-title">
-            🏠 Bangalore Locality Recommender
-        </div>
-
-        <div class="hero-subtitle">
-            A data-driven recommendation tool that helps you identify
-            Bangalore localities based on your office location, rental
-            budget, residence preferences, commute, and amenities.
-        </div>
-
-        <div class="hero-tag">
-            DATA-DRIVEN LOCALITY RECOMMENDATION
-        </div>
-
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+st.markdown("""
+<div class="hero">
+<div class="hero-title">🏠 Bangalore Locality Recommender</div>
+<div class="hero-subtitle">
+A data-driven recommendation tool that helps identify Bangalore
+localities based on office location, rental budget, residence
+preferences, commute, and amenities.
+</div>
+<div class="hero-tag">DATA-DRIVEN LOCALITY RECOMMENDATION</div>
+</div>
+""", unsafe_allow_html=True)
 
 
 # ------------------------------------------------------------------
@@ -658,7 +604,7 @@ with st.sidebar:
 
 
 # ------------------------------------------------------------------
-# MAIN RESULTS
+# MAIN APPLICATION
 # ------------------------------------------------------------------
 
 if submitted:
@@ -776,22 +722,12 @@ if submitted:
 
         st.markdown(
             f"""
-            <div class="kpi-card">
-
-                <div class="kpi-label">
-                    Top Match
-                </div>
-
-                <div class="kpi-value">
-                    {top_locality}
-                </div>
-
-                <div class="kpi-description">
-                    Highest overall fit
-                </div>
-
-            </div>
-            """,
+<div class="kpi-card">
+<div class="kpi-label">TOP MATCH</div>
+<div class="kpi-value">{top_locality}</div>
+<div class="kpi-description">Highest overall fit</div>
+</div>
+""",
             unsafe_allow_html=True
         )
 
@@ -800,22 +736,12 @@ if submitted:
 
         st.markdown(
             f"""
-            <div class="kpi-card">
-
-                <div class="kpi-label">
-                    Fit Score
-                </div>
-
-                <div class="kpi-value">
-                    {top_score:.1f}%
-                </div>
-
-                <div class="kpi-description">
-                    Top locality score
-                </div>
-
-            </div>
-            """,
+<div class="kpi-card">
+<div class="kpi-label">FIT SCORE</div>
+<div class="kpi-value">{top_score:.1f}%</div>
+<div class="kpi-description">Top locality score</div>
+</div>
+""",
             unsafe_allow_html=True
         )
 
@@ -824,22 +750,12 @@ if submitted:
 
         st.markdown(
             f"""
-            <div class="kpi-card">
-
-                <div class="kpi-label">
-                    Avg. Rent
-                </div>
-
-                <div class="kpi-value">
-                    ₹{avg_rent:,.0f}
-                </div>
-
-                <div class="kpi-description">
-                    Across matched localities
-                </div>
-
-            </div>
-            """,
+<div class="kpi-card">
+<div class="kpi-label">AVG. RENT</div>
+<div class="kpi-value">₹{avg_rent:,.0f}</div>
+<div class="kpi-description">Across matched localities</div>
+</div>
+""",
             unsafe_allow_html=True
         )
 
@@ -848,22 +764,12 @@ if submitted:
 
         st.markdown(
             f"""
-            <div class="kpi-card">
-
-                <div class="kpi-label">
-                    Avg. Commute
-                </div>
-
-                <div class="kpi-value">
-                    {avg_commute:.0f} min
-                </div>
-
-                <div class="kpi-description">
-                    Free-flow estimate
-                </div>
-
-            </div>
-            """,
+<div class="kpi-card">
+<div class="kpi-label">AVG. COMMUTE</div>
+<div class="kpi-value">{avg_commute:.0f} min</div>
+<div class="kpi-description">Free-flow estimate</div>
+</div>
+""",
             unsafe_allow_html=True
         )
 
@@ -884,7 +790,7 @@ if submitted:
 
 
     # --------------------------------------------------------------
-    # RESULTS TABLE
+    # RESULT TABLE
     # --------------------------------------------------------------
 
     display_df = result[
@@ -911,24 +817,6 @@ if submitted:
     ).round(1)
 
 
-    display_df["effective_rent"] = (
-        display_df["effective_rent"]
-        .round(0)
-    )
-
-
-    display_df["commute_min"] = (
-        display_df["commute_min"]
-        .round(0)
-    )
-
-
-    display_df["commute_km"] = (
-        display_df["commute_km"]
-        .round(1)
-    )
-
-
     display_df.columns = [
         "Rank",
         "Locality",
@@ -945,7 +833,7 @@ if submitted:
         display_df,
         use_container_width=True,
         hide_index=True,
-        height=430,
+        height=430
     )
 
 
@@ -983,46 +871,34 @@ if submitted:
     # SCORE BREAKDOWN
     # --------------------------------------------------------------
 
-    st.markdown("")
+    with st.expander("📊 Why these rankings?"):
 
+        st.markdown("""
+<div class="info-card">
 
-    with st.expander(
-        "📊 Why these rankings?"
-    ):
+<strong>🚗 Commute</strong><br>
+Estimated driving distance and time from your office location.
 
-        st.markdown(
-            """
-            <div class="info-card">
+<br><br>
 
-            Each locality receives a composite score based on three
-            major dimensions:
+<strong>💰 Rent</strong><br>
+Rental cost relative to your selected monthly budget and
+furnishing preference.
 
-            <br><br>
+<br><br>
 
-            <strong>🚗 Commute</strong><br>
-            Estimated driving distance and time from your office location.
+<strong>🏪 Amenities</strong><br>
+Availability of relevant amenities around each locality,
+adjusted according to your selected priorities.
 
-            <br><br>
+<br><br>
 
-            <strong>💰 Rent</strong><br>
-            Rental cost relative to your selected monthly budget and
-            furnishing preference.
+<strong>⚖️ Final Score</strong><br>
+The individual factors are normalized and combined using
+the weights selected in the sidebar.
 
-            <br><br>
-
-            <strong>🏪 Amenities</strong><br>
-            Availability of relevant amenities around each locality,
-            adjusted according to your selected priorities.
-
-            <br><br>
-
-            The individual factors are normalized and combined using
-            the weights selected in the sidebar.
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+</div>
+""", unsafe_allow_html=True)
 
 
         if result["furnishing_fallback"].any():
@@ -1036,7 +912,7 @@ if submitted:
 
 
     # --------------------------------------------------------------
-    # METHODOLOGY
+    # HOW IT WORKS
     # --------------------------------------------------------------
 
     st.markdown(
@@ -1046,7 +922,7 @@ if submitted:
 
     st.markdown(
         '<div class="section-subtitle">'
-        'A simple explainable scoring pipeline behind the recommendations.'
+        'The recommendation pipeline behind the results.'
         '</div>',
         unsafe_allow_html=True
     )
@@ -1057,80 +933,44 @@ if submitted:
 
     with m1:
 
-        st.markdown(
-            """
-            <div class="method-card">
-
-                <div class="method-number">
-                    STEP 01
-                </div>
-
-                <div class="method-title">
-                    User Preferences
-                </div>
-
-                <div class="method-text">
-                    Office location, budget, BHK,
-                    furnishing and personal priorities
-                    define the recommendation criteria.
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+<div class="method-card">
+<div class="method-number">STEP 01</div>
+<div class="method-title">📍 User Preferences</div>
+<div class="method-text">
+Office location, budget, BHK, furnishing and
+personal priorities define the recommendation criteria.
+</div>
+</div>
+""", unsafe_allow_html=True)
 
 
     with m2:
 
-        st.markdown(
-            """
-            <div class="method-card">
-
-                <div class="method-number">
-                    STEP 02
-                </div>
-
-                <div class="method-title">
-                    Data & Scoring
-                </div>
-
-                <div class="method-text">
-                    Rental, commute and amenity signals
-                    are normalized and combined using
-                    user-selected weights.
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+<div class="method-card">
+<div class="method-number">STEP 02</div>
+<div class="method-title">📊 Data & Scoring</div>
+<div class="method-text">
+Rental, commute and amenity signals are normalized
+and combined using user-selected weights.
+</div>
+</div>
+""", unsafe_allow_html=True)
 
 
     with m3:
 
-        st.markdown(
-            """
-            <div class="method-card">
-
-                <div class="method-number">
-                    STEP 03
-                </div>
-
-                <div class="method-title">
-                    Ranked Recommendations
-                </div>
-
-                <div class="method-text">
-                    Suitable localities are ranked by their
-                    overall fit score and presented with
-                    supporting metrics.
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+<div class="method-card">
+<div class="method-number">STEP 03</div>
+<div class="method-title">✨ Ranked Recommendations</div>
+<div class="method-text">
+Suitable localities are ranked by their overall fit
+score and presented with supporting metrics.
+</div>
+</div>
+""", unsafe_allow_html=True)
 
 
 else:
@@ -1157,119 +997,78 @@ else:
 
     with c1:
 
-        st.markdown(
-            """
-            <div class="method-card">
-
-                <div class="method-number">
-                    01
-                </div>
-
-                <div class="method-title">
-                    📍 Enter your office
-                </div>
-
-                <div class="method-text">
-                    Provide your office location so the
-                    recommender can estimate commute times.
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+<div class="method-card">
+<div class="method-number">01</div>
+<div class="method-title">📍 Enter your office</div>
+<div class="method-text">
+Provide your office location so the recommender
+can estimate commute times.
+</div>
+</div>
+""", unsafe_allow_html=True)
 
 
     with c2:
 
-        st.markdown(
-            """
-            <div class="method-card">
-
-                <div class="method-number">
-                    02
-                </div>
-
-                <div class="method-title">
-                    💰 Set your preferences
-                </div>
-
-                <div class="method-text">
-                    Define your rental budget, residence
-                    type, furnishing and priorities.
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+<div class="method-card">
+<div class="method-number">02</div>
+<div class="method-title">💰 Set your preferences</div>
+<div class="method-text">
+Define your rental budget, residence type,
+furnishing and priorities.
+</div>
+</div>
+""", unsafe_allow_html=True)
 
 
     with c3:
 
-        st.markdown(
-            """
-            <div class="method-card">
-
-                <div class="method-number">
-                    03
-                </div>
-
-                <div class="method-title">
-                    ✨ Explore recommendations
-                </div>
-
-                <div class="method-text">
-                    Get ranked localities with supporting
-                    rent, commute and amenity metrics.
-                </div>
-
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        st.markdown("""
+<div class="method-card">
+<div class="method-number">03</div>
+<div class="method-title">✨ Explore recommendations</div>
+<div class="method-text">
+Get ranked localities with supporting rent,
+commute and amenity metrics.
+</div>
+</div>
+""", unsafe_allow_html=True)
 
 
-    st.markdown("")
+    st.write("")
 
 
-    st.markdown(
-        """
-        <div class="info-card">
+    st.markdown("""
+<div class="info-card">
 
-        <strong>💡 What makes this recommendation data-driven?</strong>
+<strong>💡 What makes this recommendation data-driven?</strong>
 
-        <br><br>
+<br><br>
 
-        Instead of simply listing popular Bangalore neighbourhoods,
-        the application combines multiple signals — rental affordability,
-        commute distance, commute time and local amenities — and allows
-        the user to decide how important each factor should be.
+Instead of simply listing popular Bangalore neighbourhoods,
+the application combines multiple signals — rental affordability,
+commute distance, commute time and local amenities — and allows
+the user to decide how important each factor should be.
 
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+</div>
+""", unsafe_allow_html=True)
 
 
 # ------------------------------------------------------------------
 # FOOTER
 # ------------------------------------------------------------------
 
-st.markdown(
-    """
-    <div class="footer">
+st.markdown("""
+<div class="footer">
 
-        Bangalore Locality Recommender &nbsp;•&nbsp;
-        Data-driven recommendation prototype
+Bangalore Locality Recommender • Data-driven recommendation prototype
 
-        <br>
+<br>
 
-        Commute estimates represent free-flow driving conditions
-        and should be treated as relative signals rather than
-        exact travel-time predictions.
+Commute estimates represent free-flow driving conditions and should
+be treated as relative signals rather than exact travel-time predictions.
 
-    </div>
-    """,
-    unsafe_allow_html=True,
-)
+</div>
+""", unsafe_allow_html=True)
